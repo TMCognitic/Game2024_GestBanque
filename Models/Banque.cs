@@ -35,5 +35,28 @@ namespace Models
 
             _comptes.Remove(numero);
         }
+
+        public double AvoirDesComptes(Personne titulaire)
+        {
+            double total = 0D;
+
+            //foreach(KeyValuePair<string, Courant> kvp in _comptes)
+            //{
+            //    if(kvp.Value.Titulaire == titulaire)
+            //    {
+            //        total += kvp.Value;
+            //    }
+            //}
+
+            foreach (Courant courant in _comptes.Values)
+            {
+                if (courant.Titulaire == titulaire)
+                {
+                    total += courant;
+                }
+            }
+
+            return total;
+        }
     }
 }
