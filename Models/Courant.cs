@@ -1,42 +1,8 @@
 ﻿namespace Models;
 
-public class Courant
+public class Courant : Compte
 {
-    public static double operator + (double montant, Courant courant)
-    {
-        return (montant < 0 ? 0 : montant) + (courant.Solde < 0 ? 0 : courant.Solde);
-    }
-
-    private string _numero;
-    private double _solde;
     private double _ligneDeCredit;
-    private Personne _titulaire;
-
-    public string Numero
-    {
-        get
-        {
-            return _numero;
-        }
-
-        set
-        {
-            _numero = value;
-        }
-    }
-
-    public double Solde
-    {
-        get
-        {
-            return _solde;
-        }
-
-        private set
-        {
-            _solde = value;
-        }
-    }
 
     public double LigneDeCredit
     {
@@ -56,39 +22,15 @@ public class Courant
         }
     }
 
-    public Personne Titulaire
-    {
-        get
-        {
-            return _titulaire;
-        }
-
-        set
-        {
-            _titulaire = value;
-        }
-    }
-
-    public void Depot(double montant)
+    public override void Retrait(double montant)
     {
         if (montant <= 0)
-        {
-            Console.WriteLine("Dépot d'un montant négatif impossible"); // => Erreur : Exception
-            return;
-        }
-
-        Solde += montant;
-    }
-
-    public void Retrait(double montant)
-    {
-        if(montant <= 0)
         {
             Console.WriteLine("Retrait d'un montant négatif impossible"); // => Erreur : Exception
             return;
         }
 
-        if(Solde - montant < -LigneDeCredit)
+        if (Solde - montant < -LigneDeCredit)
         {
             Console.WriteLine("Solde insuffisant"); // => Erreur : Exception
             return;
