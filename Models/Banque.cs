@@ -8,11 +8,11 @@ namespace Models
 {
     public class Banque
     {
-        private Dictionary<string, Courant> _comptes = new Dictionary<string, Courant>();
+        private Dictionary<string, Compte> _comptes = new Dictionary<string, Compte>();
 
         public string Nom { get; set; }
 
-        public Courant? this[string numero]
+        public Compte? this[string numero]
         {
             get
             {
@@ -23,7 +23,7 @@ namespace Models
             }
         }
 
-        public void Ajouter(Courant compte)
+        public void Ajouter(Compte compte)
         {
             _comptes.Add(compte.Numero, compte);
         }
@@ -48,11 +48,11 @@ namespace Models
             //    }
             //}
 
-            foreach (Courant courant in _comptes.Values)
+            foreach (Compte compte in _comptes.Values)
             {
-                if (courant.Titulaire == titulaire)
+                if (compte.Titulaire == titulaire)
                 {
-                    total += courant;
+                    total += compte;
                 }
             }
 

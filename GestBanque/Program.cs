@@ -27,22 +27,21 @@ class Program
             DateNaiss = new DateTime(1970, 1, 1)
         };
 
-        Courant courant = new Courant()
+        Compte courant = new Courant()
         {
             Numero = "0001",
             LigneDeCredit = 500,
             Titulaire = doeJohn
         };
 
-        Courant courant2 = new Courant()
+        Compte epargne = new Epargne()
         {
             Numero = "0002",
-            LigneDeCredit = 500,
             Titulaire = doeJohn
         };
 
         banque.Ajouter(courant);
-        banque.Ajouter(courant2);
+        banque.Ajouter(epargne);
 
         banque["0001"]?.Depot(-100);
         Console.WriteLine($"Depot de -100 sur le compte '0001' : {banque["0001"]?.Solde}");
@@ -56,6 +55,14 @@ class Program
         Console.WriteLine($"Retrait de 600 sur le compte '0001' : {banque["0001"]?.Solde}");
         banque["0002"]?.Depot(300);
         Console.WriteLine($"Depot de 300 sur le compte '0002' : {banque["0002"]?.Solde}");
+
+        banque["0002"]?.Retrait(100);
+        Console.WriteLine($"Retrait de 100 sur le compte '0002' : {banque["0002"]?.Solde}");
+
+        if (banque["0002"] is Epargne e)
+        {
+            Console.WriteLine($"Date de dernier retrait : {e.DernierRetrait}");
+        }
 
         Console.WriteLine($"Avoir des comptes de Mr {doeJohn.Nom} {doeJohn.Prenom} : {banque.AvoirDesComptes(doeJohn)}");
 
