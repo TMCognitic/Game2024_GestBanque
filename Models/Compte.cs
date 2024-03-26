@@ -50,6 +50,19 @@
             }
         }
 
+        public virtual double LigneDeCredit
+        {
+            get
+            {
+                return 0D;
+            }
+            set
+            {
+                Console.WriteLine("Erreur, on ne peut pas modifier la ligne de crédit d'un compte");
+                return;
+            }
+        }
+
         public void Depot(double montant)
         {
             if (montant <= 0)
@@ -63,18 +76,13 @@
 
         public virtual void Retrait(double montant)
         {
-            Retrait(montant, 0D);
-        }
-
-        protected void Retrait(double montant, double ligneDeCredit)
-        {
             if (montant <= 0)
             {
                 Console.WriteLine("Retrait d'un montant négatif impossible"); // => Erreur : Exception
                 return;
             }
 
-            if (Solde - montant < -ligneDeCredit)
+            if (Solde - montant < -LigneDeCredit)
             {
                 Console.WriteLine("Solde insuffisant"); // => Erreur : Exception
                 return;
