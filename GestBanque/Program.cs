@@ -64,6 +64,8 @@ class Program
             Console.WriteLine($"Date de dernier retrait : {e.DernierRetrait}");
         }
 
+        banque["0002"]?.AppliquerInteret();
+
         Console.WriteLine($"Avoir des comptes de Mr {doeJohn.Nom} {doeJohn.Prenom} : {banque.AvoirDesComptes(doeJohn)}");
 
         banque.Supprimer("0001");
