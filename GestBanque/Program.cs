@@ -15,30 +15,11 @@ class Program
         Console.WriteLine($"{fahrenheit.Temperature} °f = {celsius.Temperature} °c");
         #endregion
 
-        Banque banque = new Banque()
-        {
-            Nom = "MyFavouriteBank"
-        };
+        Banque banque = new Banque("MyFavouriteBank");
 
-        Personne doeJohn = new Personne()
-        {
-            Nom = "Doe",
-            Prenom = "John",
-            DateNaiss = new DateTime(1970, 1, 1)
-        };
-
-        Compte courant = new Courant()
-        {
-            Numero = "0001",
-            LigneDeCredit = 500,
-            Titulaire = doeJohn
-        };
-
-        Compte epargne = new Epargne()
-        {
-            Numero = "0002",
-            Titulaire = doeJohn
-        };
+        Personne doeJohn = new Personne("Doe", "John", new DateTime(1970, 1, 1));
+        Compte courant = new Courant("0001", 500, doeJohn);
+        Compte epargne = new Epargne("0002", doeJohn);
 
         banque.Ajouter(courant);
         banque.Ajouter(epargne);

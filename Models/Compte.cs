@@ -18,7 +18,7 @@
                 return _numero;
             }
 
-            set
+            private set
             {
                 _numero = value;
             }
@@ -44,10 +44,21 @@
                 return _titulaire;
             }
 
-            set
+            private set
             {
                 _titulaire = value;
             }
+        }
+
+        protected Compte(string numero, Personne titulaire)
+        {
+            Numero = numero;
+            Titulaire = titulaire;
+        }
+
+        protected Compte(string numero, Personne titulaire, double solde) : this(numero, titulaire)
+        {
+            Solde = solde;
         }
 
         public void Depot(double montant)
