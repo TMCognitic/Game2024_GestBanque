@@ -7,6 +7,8 @@
             return (montant < 0 ? 0 : montant) + (compte.Solde < 0 ? 0 : compte.Solde);
         }
 
+        public event PassageEnNegatifDelegate? PassageEnNegatifEvent;
+
         private Personne _titulaire;
         private string _numero;
         private double _solde;
@@ -96,6 +98,12 @@
         public void AppliquerInteret()
         {
             Solde += CalculInteret();
+        }
+
+        protected void RaisePassageEnNegatifEvent()
+        {
+            PassageEnNegatifDelegate? passageEnNegatifEvent = PassageEnNegatifEvent;
+            passageEnNegatifEvent?.Invoke(this);
         }
     }
 }
