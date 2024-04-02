@@ -7,7 +7,7 @@
             return (montant < 0 ? 0 : montant) + (compte.Solde < 0 ? 0 : compte.Solde);
         }
 
-        public event PassageEnNegatifDelegate? PassageEnNegatifEvent;
+        public event Action<Compte>? PassageEnNegatifEvent;
 
         private Personne _titulaire;
         private string _numero;
@@ -102,7 +102,7 @@
 
         protected void RaisePassageEnNegatifEvent()
         {
-            PassageEnNegatifDelegate? passageEnNegatifEvent = PassageEnNegatifEvent;
+            Action<Compte>? passageEnNegatifEvent = PassageEnNegatifEvent;
             passageEnNegatifEvent?.Invoke(this);
         }
     }
